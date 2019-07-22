@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <h2>Регистрация</h2>
+    <hr>
+        <div class="row justify-content-center">
+        <form method="post" style="background:#f5f4f1; padding:20px; width:300px;">
+            {% csrf_token %}
+            {% bootstrap_form form layout='vertical' %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
+        </form>
+        </div>
+{% endblock %}
