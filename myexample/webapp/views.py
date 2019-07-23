@@ -1,3 +1,4 @@
+import requests, json
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
@@ -45,33 +46,6 @@ def main_page(request):
     return render(request, 'main_page.html')
 
 
-# def sendmail(request):
-#     template = 'sendmail.html'
-#
-#     if request.method == 'POST':
-#         form = SendmailForm(request.POST)
-#         if form.is_valid():
-#             sender = request.user.username
-#             from_email = form.cleaned_data['from_email']
-#             body = form.cleaned_data['body']
-#             status = True
-#             user = User.objects.get(username='admin')
-#             try:
-#                 user.email_user('Сообщение администратору', body,
-#                                 from_email=from_email,
-#                                 fail_silently=True)
-#             except SMTPException:
-#                 status = False
-#             mail = form.save(commit=False)
-#             mail.sender = sender
-#             mail.status = status
-#             mail.save()
-#             return redirect('main_page')
-#
-#     form = SendmailForm()
-#     return render(request, template, {'form': form})
-
-
 class SendMailView(View):
     form_class = SendmailForm
     template_name = 'sendmail.html'
@@ -86,6 +60,7 @@ class SendMailView(View):
             sender = request.user.username
             from_email = form.cleaned_data['from_email']
             body = form.cleaned_data['body']
+            body += ('\n' + str(_find_user(from_email)))
             status = True
             user = User.objects.get(username='admin')
             try:
@@ -101,3 +76,14 @@ class SendMailView(View):
             return redirect('main_page')
 
         return render(request, self.template_name, {'form': form})
+
+
+def _find_user(from_email):
+    URL = 'http://jsonplaceholder.typicode.com/users'
+    r = requests.get(URL)
+    if r.status_code != 200:
+        return ''
+    else:
+        for item in r.json():
+            if item['email'] == from_email:
+                return json.dumps(item, indent=4)
