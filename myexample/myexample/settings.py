@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = "main_page"
+LOGIN_REDIRECT_URL = "sendmail"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'myexample.wsgi.application'

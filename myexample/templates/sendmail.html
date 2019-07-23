@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Отправка сообщения администратору сайта{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h4>Отправка сообщения администратору сайта</h4>
+        <form class="order-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-secondary" value="Отправить">
+        </form>
+    </div>
+{% endblock %}
