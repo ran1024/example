@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if user.is_authenticated %}
+        Добро пожаловать
+        {% endif %}
+        
+        Привет, <b>гость</b>.<br>
+        Пожалуйста, <a href="/register">зарегистрируйся</a> или <a href="/login">авторизуйся</a>!
+    </div>
+{% endblock %}

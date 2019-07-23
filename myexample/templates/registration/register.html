@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load bootstrap4 %}
 
 {% block title %}Регистрация{% endblock %}
 
@@ -9,9 +8,14 @@
         <div class="row justify-content-center">
         <form method="post" style="background:#f5f4f1; padding:20px; width:300px;">
             {% csrf_token %}
-            {% bootstrap_form form layout='vertical' %}
-            <input type="hidden" name="next" value="{{ next }}">
-            {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
+            {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                <em>{{ field.errors }}</em>
+            </p>
+            {% endfor %}
+            <button type="submit">Зарегистрироваться</button>
         </form>
         </div>
 {% endblock %}

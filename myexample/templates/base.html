@@ -1,28 +1,21 @@
-{% load bootstrap4 %}
-{% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}Моё приложение{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
       <!--Import Google Icon Font-->
-    <!--link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"-->
-    {% bootstrap_css %}
-    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% bootstrap_javascript jquery='slim' %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.css" %}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}"  media="screen,projection"/>
+
     <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
-  <body class="container-fluid">
-    <header class="mb-4">
-        <h1 class="display-4 text-center">Задание № 1</h1>
-    </header>
-    <div class="row justify-content-center">
-    <div class="col-6 text-center">
+  <body>
     {% block content %}{% endblock %}
-    </div>
-    </div>
+
     <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
   </body>
 </html>
