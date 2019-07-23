@@ -87,3 +87,4 @@ def _find_user(from_email):
         for item in r.json():
             if item['email'] == from_email:
                 return json.dumps(item, indent=4)
+        return ''
