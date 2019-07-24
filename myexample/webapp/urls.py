@@ -20,7 +20,8 @@ urlpatterns = [
     path('', home),
     path('main_page/', main_page, name='main_page'),
     path('sendmail/', SendMailView.as_view(), name='sendmail'),
-    path('register/', register_user, name='register_user'),
+#    path('register/', register_user, name='register_user'),
+    path('register/', RegisterUser.as_view(), name='register_user'),
     path('login/', WebappLoginView.as_view(), name='login'),
     path('logout/', WebappLogoutView.as_view(), name='logout'),
 ]
